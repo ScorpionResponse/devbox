@@ -1,0 +1,11 @@
+---
+# This does essentially nothing.
+# It just touches a file 'success' to prove that it ran
+
+- name: Ansible Noop
+  hosts: local
+  sudo: yes
+  sudo_user: vagrant
+  
+  tasks:
+    - file: path=/home/vagrant/success state=touch
