@@ -21,10 +21,10 @@ apt-get install -y ansible
 apt-get install -y git
 
 # Checkout the repo
-sudo -i -u vagrant git clone https://github.com/ScorpionResponse/vagrant-bootstrap.git vagrant-bootstrap
+sudo -i -u vagrant git clone https://github.com/ScorpionResponse/devbox.git devbox
 
-# Run Noop for a Proof of concept
-cd vagrant-bootstrap
+# Run the site.yml configuration
+cd devbox
 ansible-playbook ansible/site.yml -i ansible/hosts --connection=local
 
 SCRIPT
