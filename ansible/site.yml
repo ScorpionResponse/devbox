@@ -5,7 +5,7 @@
   hosts: local
   tasks:
     - name: Checkout dotfiles
-      git: repo=git://github.com/scorpionresponse/dotfiles.git dest=/home/{{ user }}/dotfiles
+      git: repo=git://github.com/scorpionresponse/dotfiles.git dest=/home/{{ ansible_user_id }}/dotfiles
 
     - name: Install dotfiles
-      shell: /home/{{ user }}/dotfiles/install_dotfiles.sh
+      shell: /home/{{ ansible_user_id }}/dotfiles/install_dotfiles.sh
