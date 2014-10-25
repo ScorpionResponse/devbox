@@ -1,11 +1,6 @@
 ---
-# This does essentially nothing.
-# It just touches a file 'success' to prove that it ran
+# Provisioning a dev box
 
-- name: Ansible Noop
+- name: Configuring Base System
   hosts: local
-  sudo: yes
-  sudo_user: vagrant
-  
-  tasks:
-    - file: path=/home/vagrant/success state=touch
+  roles:
