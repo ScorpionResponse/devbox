@@ -3,9 +3,11 @@
 
 - name: Configuring Base System
   hosts: local
+  sudo: yes
+  sudo_user: vagrant
   tasks:
     - name: Checkout dotfiles
-      git: repo=git://github.com/scorpionresponse/dotfiles.git dest=/home/{{ ansible_user_id }}/dotfiles
+      git: repo=git://github.com/scorpionresponse/dotfiles.git dest=/home/vagrant/dotfiles accept_hostkey=True
 
     - name: Install dotfiles
-      shell: /home/{{ ansible_user_id }}/dotfiles/install_dotfiles.sh
+      shell: /home/vagrant/dotfiles/install_dotfiles.sh
