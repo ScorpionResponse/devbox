@@ -20,13 +20,17 @@
 
     - name: apt-get install stuff 
       apt: pkg={{ item }} state=installed update_cache=true
+      sudo_user: root
       with_items:
         - python3
-        - shellcheck
-        - pip
+        - cabal-install
+
+    - name: Cabal update and Shellcheck
+      shell: cabal update && cabal install shellcheck
 
     - name: pip install stuff
       pip: name={{ item }} executable=pip-3.4
+      sudo_user: root
       with_items:
         - flask
         - requests 
