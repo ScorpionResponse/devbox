@@ -3,4 +3,9 @@
 
 - name: Configuring Base System
   hosts: local
-  roles:
+  tasks:
+    - name: Checkout dotfiles
+      git: repo=git://github.com/scorpionresponse/dotfiles.git dest=/home/{{ user }}/dotfiles
+
+    - name: Install dotfiles
+      shell: /home/{{ user }}/dotfiles/install_dotfiles.sh
