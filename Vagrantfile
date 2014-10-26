@@ -73,7 +73,7 @@ apt-get install -y git
 
 echo "Add SSH Key to known_hosts"
 sudo -i -u vagrant mkdir -p /home/vagrant/.ssh
-sudo -i -u vagrant ssh-keyscan -t rsa -H github.com >> /home/vagrant/.ssh/known_hosts
+sudo -i -u vagrant sh -c "ssh-keyscan -t rsa -H github.com >> /home/vagrant/.ssh/known_hosts"
 
 echo "Checkout this repo"
 sudo -i -u vagrant git clone https://github.com/ScorpionResponse/devbox.git devbox-temp
