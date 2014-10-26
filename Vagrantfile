@@ -76,11 +76,13 @@ sudo -i -u vagrant mkdir -p /home/vagrant/.ssh
 sudo -i -u vagrant ssh-keyscan -t rsa -H github.com >> /home/vagrant/.ssh/known_hosts
 
 echo "Checkout this repo"
-sudo -i -u vagrant git clone https://github.com/ScorpionResponse/devbox.git devbox
+sudo -i -u vagrant git clone https://github.com/ScorpionResponse/devbox.git devbox-temp
 
-echo "Run the ansible-playbook locally"
-cd devbox
-ansible-playbook ansible/site.yml -i ansible/hosts --connection=local
+echo "Run the ansible-playbook locally (this takes several minutes with no output)"
+ansible-playbook devbox-temp/ansible/site.yml -i devbox-temp/ansible/hosts --connection=local
+
+echo "Deleting the local devbox clone"
+rm -rf devbox-temp
 
 SCRIPT
 
