@@ -13,10 +13,7 @@
       shell: chmod +x /home/vagrant/dotfiles/install_dotfiles.sh
 
     - name: Install dotfiles
-      command: /home/vagrant/dotfiles/install_dotfiles.sh
-      args:
-        chdir: /home/vagrant/dotfiles/
-        executable: /bin/bash
+      shell: /home/vagrant/dotfiles/install_dotfiles.sh
 
     - name: apt-get install stuff 
       apt: pkg={{ item }} state=installed update_cache=true
