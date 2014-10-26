@@ -43,7 +43,7 @@
       shell: chmod +x /home/vagrant/development/dotfiles/install_dotfiles.sh
 
     - name: Install dotfiles
-      shell: /home/vagrant/dotfiles/development/install_dotfiles.sh
+      shell: /home/vagrant/development/dotfiles/install_dotfiles.sh
 
     - name: pip install stuff
       pip: name={{ item }} executable=pip3
