@@ -6,6 +6,9 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/1/providers/virtualbox.box"
 
+  config.vm.hostname = "devbox.local"
+  config.vm.network "public_network", ip: "192.168.1.17"
+
   # Stolen from: https://github.com/DSpace/vagrant-dspace/blob/master/Vagrantfile#L146
   # Turn on SSH forwarding (so that 'vagrant ssh' has access to your local SSH keys, and you can use your local SSH keys to access GitHub, etc.)
   config.ssh.forward_agent = true
