@@ -9,7 +9,8 @@
     - name: Enable backports (for shellcheck)
       sudo_user: root
       apt_repository: repo='deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse' state=present update_cache=true
-      apt_repository: repo='deb-src http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse' state=present update_cache=true
+      # Don't think I can do this twice in a row, plus I don't need src
+      #apt_repository: repo='deb-src http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse' state=present update_cache=true
 
     - name: apt-get install stuff 
       apt: pkg={{ item }} state=installed update_cache=true
