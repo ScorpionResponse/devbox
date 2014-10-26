@@ -22,7 +22,7 @@ apt-get install -y git
 
 # Checkout the repo
 # First add the ssh key to known hosts
-ssh-keyscan -H github.com >> /etc/ssh/ssh_known_hosts
+ssh-keyscan -t rsa -H github.com >> /etc/ssh/ssh_known_hosts
 sudo -i -u vagrant git clone https://github.com/ScorpionResponse/devbox.git devbox
 
 # Run the site.yml configuration
