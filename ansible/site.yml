@@ -22,14 +22,17 @@
       apt: pkg={{ item }} state=installed update_cache=true
       sudo_user: root
       with_items:
-        - python3
+        - build-essential
         - cabal-install
+        - python3
+        - python3-pip
+        - python3-setuptools
 
     - name: Cabal update and Shellcheck
       shell: cabal update && cabal install shellcheck
 
     - name: pip install stuff
-      pip: name={{ item }} executable=pip-3.4
+      pip: name={{ item }} executable=pip3
       sudo_user: root
       with_items:
         - flask
