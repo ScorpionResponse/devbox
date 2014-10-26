@@ -59,21 +59,23 @@ Vagrant.configure("2") do |config|
   $script = <<SCRIPT
 apt-get update
 
-# Install Ansible
+echo "Install Ansible"
 apt-get install -y software-properties-common
 apt-add-repository -y ppa:ansible/ansible
 apt-get update
 apt-get install -y ansible
 
-# Install Git
+echo "Install git"
 apt-get install -y git
 
-# Checkout the repo
-# First add the ssh key to known hosts
-ssh-keyscan -t rsa -H github.com >> /etc/ssh/ssh_known_hosts
+echo "Add SSH Key to known_hosts"
+sudo -i -u vagrant mkdir -p /home/vagrant/.ssh
+sudo -i -u vagrant ssh-keyscan -t rsa -H github.com >> /home/vagrant/.ssh/known_hosts
+
+echo "Checkout this repo"
 sudo -i -u vagrant git clone https://github.com/ScorpionResponse/devbox.git devbox
 
-# Run the site.yml configuration
+echo "Run the ansible-playbook locally"
 cd devbox
 ansible-playbook ansible/site.yml -i ansible/hosts --connection=local
 
