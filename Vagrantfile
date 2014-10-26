@@ -31,4 +31,10 @@ SCRIPT
 
   config.vm.provision :shell, inline: $script
 
+  config.vm.provider "virtualbox" do |v|
+    v.name = "devbox"
+    v.memory = 1024
+    v.cpus = 2
+  end
+
 end
