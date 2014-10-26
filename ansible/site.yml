@@ -22,14 +22,28 @@
         - python3-setuptools
         - shellcheck
 
-    - name: Checkout dotfiles
-      git: repo=git://github.com/scorpionresponse/dotfiles.git dest=/home/vagrant/dotfiles accept_hostkey=True
+    - name: Create Dev Directory
+      file: src=/home/vagrant/development state=directory
 
-    - name: Make install script executable
-      shell: chmod +x /home/vagrant/dotfiles/install_dotfiles.sh
+    - name: Checkout git repos
+      git: repo=ssh://git@github.com/scorpionresponse/{{ item }}.git dest=/home/vagrant/development/{{ item }} accept_hostkey=True
+      with_items:
+        - devbox
+        - dotfiles
+        - http_trace
+        - kbwc_api_client
+        - oclc-auth-python
+        - pelican
+        - pelican_blog
+        - scorpionresponse.github.com
+        - statistics-etl
+        - vagrant-bootstrap
+
+    - name: Make dotfiles install script executable
+      shell: chmod +x /home/vagrant/development/dotfiles/install_dotfiles.sh
 
     - name: Install dotfiles
-      shell: /home/vagrant/dotfiles/install_dotfiles.sh
+      shell: /home/vagrant/dotfiles/development/install_dotfiles.sh
 
     - name: pip install stuff
       pip: name={{ item }} executable=pip3
