@@ -6,6 +6,20 @@
   sudo: yes
   sudo_user: vagrant
   tasks:
+    - name: Enable backports
+      sudo_user: root
+      apt_repository: repo='deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted univere multiverse' state=present update_cache=true
+
+    - name: apt-get install stuff 
+      apt: pkg={{ item }} state=installed update_cache=true
+      sudo_user: root
+      with_items:
+        - build-essential
+        - python3
+        - python3-pip
+        - python3-setuptools
+        - shellcheck
+
     - name: Checkout dotfiles
       git: repo=git://github.com/scorpionresponse/dotfiles.git dest=/home/vagrant/dotfiles accept_hostkey=True
 
@@ -14,19 +28,6 @@
 
     - name: Install dotfiles
       shell: /home/vagrant/dotfiles/install_dotfiles.sh
-
-    - name: apt-get install stuff 
-      apt: pkg={{ item }} state=installed update_cache=true
-      sudo_user: root
-      with_items:
-        - build-essential
-        - cabal-install
-        - python3
-        - python3-pip
-        - python3-setuptools
-
-    - name: Cabal update and Shellcheck
-      shell: cabal update && cabal install shellcheck
 
     - name: pip install stuff
       pip: name={{ item }} executable=pip3
