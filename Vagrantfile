@@ -21,11 +21,9 @@ apt-get install -y ansible
 apt-get install -y git
 
 # Checkout the repo
-#sudo -i -u vagrant git clone https://github.com/ScorpionResponse/devbox.git devbox
-pwd
-# Try this to avoid hanging due to sudo
-git clone https://github.com/ScorpionResponse/devbox.git devbox
-chown -R vagrant:vagrant devbox
+# First add the ssh key to known hosts
+ssh-keyscan -H github.com >> /etc/ssh/ssh_known_hosts
+sudo -i -u vagrant git clone https://github.com/ScorpionResponse/devbox.git devbox
 
 # Run the site.yml configuration
 cd devbox

@@ -23,7 +23,7 @@
         - shellcheck
 
     - name: Create Dev Directory
-      file: src=/home/vagrant/development state=directory
+      file: path=/home/vagrant/development state=directory
 
     - name: Checkout git repos
       git: repo=ssh://git@github.com/scorpionresponse/{{ item }}.git dest=/home/vagrant/development/{{ item }} accept_hostkey=True
