@@ -49,6 +49,11 @@
         - flask
         - requests 
 
+    - name: Symlink nodejs to node
+      become: yes
+      become_user: root
+      command: ln -s /usr/bin/nodejs /usr/bin/node
+
     - name: Install "hackmyresume" node.js package globally
       become: yes
       become_user: root
