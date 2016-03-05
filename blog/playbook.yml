@@ -46,3 +46,4 @@
       with_items:
         - flask
         - requests 
+        - pelican
