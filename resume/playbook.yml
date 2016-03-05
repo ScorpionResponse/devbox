@@ -16,6 +16,7 @@
         - python3-pip
         - python3-setuptools
         - shellcheck
+        - wkhtmltopdf # For PDF generation from hackmyresume
 
     - name: Create Dev Directory
       file: path=/home/vagrant/development state=directory
