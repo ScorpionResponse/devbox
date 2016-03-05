@@ -11,6 +11,7 @@
       with_items:
         - build-essential
         - git
+        - npm
         - python3
         - python3-pip
         - python3-setuptools
@@ -47,3 +48,6 @@
         - flask
         - requests 
         - pelican
+
+    - name: Install "hackmyresume" node.js package globally.
+      npm: name=hackmyresume global=yes
