@@ -1,0 +1,48 @@
+---
+# Provisioning a dev box
+
+- name: Configuring Base System
+  hosts: all
+  tasks:
+    - name: apt-get install stuff 
+      apt: pkg={{ item }} state=installed update_cache=true
+      become: yes
+      become_user: root
+      with_items:
+        - build-essential
+        - git
+        - python3
+        - python3-pip
+        - python3-setuptools
+        - shellcheck
+
+    - name: Create Dev Directory
+      file: path=/home/vagrant/development state=directory
+
+    - name: Checkout git repos
+      git: repo=ssh://git@github.com/scorpionresponse/{{ item }}.git dest=/home/vagrant/development/{{ item }} accept_hostkey=True
+      with_items:
+        - devbox
+        - dotfiles
+        - http_trace
+        - kbwc_api_client
+        - oclc-auth-python
+        - pelican
+        - pelican_blog
+        - scorpionresponse.github.com
+        - statistics-etl
+        - vagrant-bootstrap
+
+    - name: Make dotfiles install script executable
+      shell: chmod +x /home/vagrant/development/dotfiles/install_dotfiles.sh
+
+    - name: Install dotfiles
+      shell: /home/vagrant/development/dotfiles/install_dotfiles.sh
+
+    - name: pip install stuff
+      pip: name={{ item }} executable=pip3
+      become: yes
+      become_user: root
+      with_items:
+        - flask
+        - requests 
