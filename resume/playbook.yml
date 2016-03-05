@@ -49,5 +49,7 @@
         - flask
         - requests 
 
-    - name: Install "hackmyresume" node.js package globally.
+    - name: Install "hackmyresume" node.js package globally
+      become: yes
+      become_user: root
       npm: name=hackmyresume global=yes
